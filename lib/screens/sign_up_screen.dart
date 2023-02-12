@@ -50,7 +50,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
         userName: _userNameController.text,
         bio: _bioController.text,
         image: _picture!);
-//For Loading End
+//For Loading progress end
     setState(() {
       _isLoading = false;
     });
