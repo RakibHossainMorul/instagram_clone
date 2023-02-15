@@ -7,7 +7,7 @@ class WebLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text("WebScreen"),
+        child: Text("Hello From Web Screen"),
       ),
     );
   }

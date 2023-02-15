@@ -3,9 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instagram_clone/resources/auth_methods.dart';
+import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
+import 'package:instagram_clone/responsive/web_screen_layout.dart';
+import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/utils/utils.dart';
 import 'package:instagram_clone/widgets/text_input_field.dart';
+
+import '../responsive/responsive_layout.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -50,12 +55,25 @@ class _SignUpScreenState extends State<SignUpScreen> {
         userName: _userNameController.text,
         bio: _bioController.text,
         image: _picture!);
-//For Loading progress end
-    setState(() {
-      _isLoading = false;
-    });
-
-    if (response != "success") {
+    // if string returned is sucess, user has been created
+    if (response == "success") {
+      setState(() {
+        _isLoading = false;
+      });
+      // navigate to the home screen
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webLayout: WebLayout(),
+            mobileLayout: MobileLayout(),
+          ),
+        ),
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      // show the error
       showSnackBar(context, response);
     }
   }
@@ -178,7 +196,11 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   child: const Text("Already have account?"),
                 ),
                 GestureDetector(
-                  onTap: (() {}),
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => const LoginScreen(),
+                    ),
+                  ),
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 8),
                     child: const Text(
