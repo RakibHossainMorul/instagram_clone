@@ -6,7 +6,6 @@ import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
 import 'package:instagram_clone/responsive/responsive_layout.dart';
 import 'package:instagram_clone/responsive/web_screen_layout.dart';
 import 'package:instagram_clone/screens/login_screen.dart';
-import 'package:instagram_clone/screens/sign_up_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 
 //This is a main function of this project
@@ -50,8 +49,8 @@ class MyApp extends StatelessWidget {
             if (snapshot.hasData) {
               // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
               return const ResponsiveLayout(
-                webLayout: MobileLayout(),
-                mobileLayout: WebLayout(),
+                webLayout: WebLayout(),
+                mobileLayout: MobileLayout(),
               );
             } else if (snapshot.hasError) {
               return Center(
