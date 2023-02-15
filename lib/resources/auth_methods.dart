@@ -55,7 +55,7 @@ class AuthenticationMethods {
         });
 
         */
-
+//
         res = "success";
       }
     } catch (e) {
