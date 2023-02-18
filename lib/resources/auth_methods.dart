@@ -29,7 +29,7 @@ class AuthenticationMethods {
 
         String photoURL = await StorageMethods()
             .uploadImageToStorage("Profile Picture", image, false);
-        //Add user to our Database for knowing exists or many kin of operation handling.
+        //Add user to our Database for knowing exists or many kind of operation handling.
         _databaseStorage.collection("Users").doc(credential.user!.uid).set({
           "username": userName,
           "email": email,

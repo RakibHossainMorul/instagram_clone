@@ -35,8 +35,12 @@ class _LoginScreenState extends State<LoginScreen> {
     setState(() {
       _isLoading = true;
     });
+
+    //
     String res = await AuthenticationMethods().loginUser(
         email: _emailController.text, password: _passwordController.text);
+    //
+
     if (res == 'success') {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
