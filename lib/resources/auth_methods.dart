@@ -6,6 +6,7 @@ import 'package:instagram_clone/resources/storage_methods.dart';
 //***This User Defined Method is resposible for Flutter Applicatin Authemtication
 // -part connected to the Firebase Authentication.
 //
+//
 
 class AuthenticationMethods {
   //Below code of line used for Firebase Authentication.
