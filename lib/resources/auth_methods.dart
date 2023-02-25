@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:instagram_clone/resources/storage_methods.dart';
+import '../model/user.dart' as model;
 
 //
 //
@@ -15,6 +16,17 @@ class AuthenticationMethods {
   final FirebaseAuth _authentication = FirebaseAuth.instance;
   //Below code of line used for user credential add into database.
   final FirebaseFirestore _databaseStorage = FirebaseFirestore.instance;
+
+  //For getting USER Details...
+
+  Future<model.User> getUserDetails() async {
+    User currentUser = _authentication.currentUser!;
+
+    DocumentSnapshot documentSnapshot =
+        await _databaseStorage.collection('users').doc(currentUser.uid).get();
+
+    return model.User.fromSnap(documentSnapshot);
+  }
 
 //Below the Funtion is used for sign up a user by authentication.
   Future<String> signUpUser(
@@ -92,5 +104,9 @@ class AuthenticationMethods {
       return err.toString();
     }
     return res;
+  }
+
+  Future<void> signOut() async {
+    await _authentication.signOut();
   }
 }

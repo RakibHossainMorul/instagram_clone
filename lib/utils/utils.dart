@@ -1,4 +1,4 @@
-// ignore_for_file: unused_import
+// ignore_for_file: unused_import, avoid_print
 
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';

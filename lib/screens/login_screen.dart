@@ -1,13 +1,14 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
-import 'package:instagram_clone/responsive/web_screen_layout.dart';
 import 'package:instagram_clone/screens/sign_up_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:instagram_clone/widgets/text_input_field.dart';
-
 import '../resources/auth_methods.dart';
-import '../responsive/responsive_layout.dart';
+import '../responsive/responsive/mobile_screen_layout.dart';
+import '../responsive/responsive/responsive_layout.dart';
+import '../responsive/responsive/web_screen_layout.dart';
 import '../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -45,8 +46,8 @@ class _LoginScreenState extends State<LoginScreen> {
       Navigator.of(context).pushAndRemoveUntil(
           MaterialPageRoute(
             builder: (context) => const ResponsiveLayout(
-              webLayout: WebLayout(),
-              mobileLayout: MobileLayout(),
+              webScreenLayout: WebScreenLayout(),
+              mobileScreenLayout: MobileScreenLayout(),
             ),
           ),
           (route) => false);
