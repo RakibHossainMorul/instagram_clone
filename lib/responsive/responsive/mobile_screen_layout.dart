@@ -83,7 +83,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               Icons.person,
               color: (_page == 4) ? primaryColor : secondaryColor,
             ),
-            label: '',
+            label: 'Profile',
             backgroundColor: primaryColor,
           ),
         ],

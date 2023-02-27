@@ -9,6 +9,7 @@ import '../resources/auth_methods.dart';
 import '../responsive/responsive/mobile_screen_layout.dart';
 import '../responsive/responsive/responsive_layout.dart';
 import '../responsive/responsive/web_screen_layout.dart';
+import '../utils/dimension.dart';
 import '../utils/utils.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -67,9 +68,13 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: MediaQuery.of(context).size.width > webScreenSize
+            ? EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 3)
+            : const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

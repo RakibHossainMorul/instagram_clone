@@ -12,6 +12,7 @@ import 'package:instagram_clone/widgets/text_input_field.dart';
 import '../responsive/responsive/mobile_screen_layout.dart';
 import '../responsive/responsive/responsive_layout.dart';
 import '../responsive/responsive/web_screen_layout.dart';
+import '../utils/dimension.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -82,9 +83,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: SafeArea(
           child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: MediaQuery.of(context).size.width > webScreenSize
+            ? EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 3)
+            : const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
