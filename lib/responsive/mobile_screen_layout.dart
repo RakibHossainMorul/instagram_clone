@@ -41,9 +41,9 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: PageView(
+        children: homeScreenItems,
         controller: pageController,
         onPageChanged: onPageChanged,
-        children: homeScreenItems,
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: mobileBackgroundColor,
@@ -83,7 +83,7 @@ class _MobileScreenLayoutState extends State<MobileScreenLayout> {
               Icons.person,
               color: (_page == 4) ? primaryColor : secondaryColor,
             ),
-            label: 'Profile',
+            label: '',
             backgroundColor: primaryColor,
           ),
         ],

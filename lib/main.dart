@@ -3,37 +3,37 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:instagram_clone/providers/user_provider.dart';
-import 'package:instagram_clone/responsive/responsive/mobile_screen_layout.dart';
-import 'package:instagram_clone/responsive/responsive/responsive_layout.dart';
-import 'package:instagram_clone/responsive/responsive/web_screen_layout.dart';
+import 'package:instagram_clone/responsive/mobile_screen_layout.dart';
+import 'package:instagram_clone/responsive/responsive_layout.dart';
+import 'package:instagram_clone/responsive/web_screen_layout.dart';
 import 'package:instagram_clone/screens/login_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
 import 'package:provider/provider.dart';
 
-//This is a main function of this project
-Future<void> main() async {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // initialise app based on platform- web or mobile
   if (kIsWeb) {
     await Firebase.initializeApp(
-        options: const FirebaseOptions(
-      apiKey: "AIzaSyDByL6lQdcPACCV3Qy7JDBQvI7vc3VdDqM",
-      authDomain: "instagram-clone-833ea.firebaseapp.com",
-      projectId: "instagram-clone-833ea",
-      storageBucket: "instagram-clone-833ea.appspot.com",
-      messagingSenderId: "921470629228",
-      appId: "1:921470629228:web:f08bb312d4033adf25af49",
-    ));
+      options: const FirebaseOptions(
+        apiKey: "AIzaSyDByL6lQdcPACCV3Qy7JDBQvI7vc3VdDqM",
+        authDomain: "instagram-clone-833ea.firebaseapp.com",
+        projectId: "instagram-clone-833ea",
+        storageBucket: "instagram-clone-833ea.appspot.com",
+        messagingSenderId: "921470629228",
+        appId: "1:921470629228:web:f08bb312d4033adf25af49",
+      ),
+    );
   } else {
     await Firebase.initializeApp();
   }
-
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -45,7 +45,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Instagram Clone',
-        //set the background color of screen for this application.
         theme: ThemeData.dark().copyWith(
           scaffoldBackgroundColor: mobileBackgroundColor,
         ),
@@ -57,8 +56,8 @@ class MyApp extends StatelessWidget {
               if (snapshot.hasData) {
                 // if snapshot has data which means user is logged in then we check the width of screen and accordingly display the screen layout
                 return const ResponsiveLayout(
-                  webScreenLayout: WebScreenLayout(),
                   mobileScreenLayout: MobileScreenLayout(),
+                  webScreenLayout: WebScreenLayout(),
                 );
               } else if (snapshot.hasError) {
                 return Center(
@@ -76,7 +75,6 @@ class MyApp extends StatelessWidget {
 
             return const LoginScreen();
           },
-          //const ResponsiveLayout( webLayout: WebLayout(), mobileLayout: MobileLayout()),
         ),
       ),
     );

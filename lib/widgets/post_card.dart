@@ -1,17 +1,15 @@
-// ignore_for_file: depend_on_referenced_packages, prefer_typing_uninitialized_variables
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:instagram_clone/model/user.dart' as model;
+import 'package:instagram_clone/models/user.dart' as model;
 import 'package:instagram_clone/providers/user_provider.dart';
 import 'package:instagram_clone/resources/firestore_methods.dart';
 import 'package:instagram_clone/screens/comments_screen.dart';
 import 'package:instagram_clone/utils/colors.dart';
+import 'package:instagram_clone/utils/global_variable.dart';
 import 'package:instagram_clone/utils/utils.dart';
 import 'package:instagram_clone/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import '../utils/dimension.dart';
 
 class PostCard extends StatefulWidget {
   final snap;
@@ -185,6 +183,11 @@ class _PostCardState extends State<PostCard> {
                   opacity: isLikeAnimating ? 1 : 0,
                   child: LikeAnimation(
                     isAnimating: isLikeAnimating,
+                    child: const Icon(
+                      Icons.favorite,
+                      color: Colors.white,
+                      size: 100,
+                    ),
                     duration: const Duration(
                       milliseconds: 400,
                     ),
@@ -193,11 +196,6 @@ class _PostCardState extends State<PostCard> {
                         isLikeAnimating = false;
                       });
                     },
-                    child: const Icon(
-                      Icons.favorite,
-                      color: Colors.white,
-                      size: 100,
-                    ),
                   ),
                 ),
               ],
@@ -290,7 +288,6 @@ class _PostCardState extends State<PostCard> {
                 ),
                 InkWell(
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text(
                       'View all $commentLen comments',
                       style: const TextStyle(
@@ -298,6 +295,7 @@ class _PostCardState extends State<PostCard> {
                         color: secondaryColor,
                       ),
                     ),
+                    padding: const EdgeInsets.symmetric(vertical: 4),
                   ),
                   onTap: () => Navigator.of(context).push(
                     MaterialPageRoute(
@@ -308,7 +306,6 @@ class _PostCardState extends State<PostCard> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.symmetric(vertical: 4),
                   child: Text(
                     DateFormat.yMMMd()
                         .format(widget.snap['datePublished'].toDate()),
@@ -316,6 +313,7 @@ class _PostCardState extends State<PostCard> {
                       color: secondaryColor,
                     ),
                   ),
+                  padding: const EdgeInsets.symmetric(vertical: 4),
                 ),
               ],
             ),

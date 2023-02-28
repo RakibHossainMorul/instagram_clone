@@ -1,9 +1,7 @@
-// ignore_for_file: avoid_print
-
 import 'dart:typed_data';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:instagram_clone/model/post.dart';
+import 'package:instagram_clone/models/post.dart';
 import 'package:instagram_clone/resources/storage_methods.dart';
 import 'package:uuid/uuid.dart';
 
